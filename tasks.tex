@@ -1,0 +1,501 @@
+\documentclass[a4]{article}
+\pagestyle{myheadings}
+\setlength{\parindent}{5ex}
+%%%%%%%%%%%%%%%%%%%
+% Packages/Macros %
+%%%%%%%%%%%%%%%%%%%
+\usepackage{mathrsfs}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{} 
+\rfoot{\normalsize\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\RomanNumeralCaps}[1]
+    {\MakeUppercase{\romannumeral #1}}
+
+\usepackage{amssymb,latexsym}  % Standard packages
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{MnSymbol}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amsthm}
+\usepackage{indentfirst}
+\usepackage{graphicx}%,vmargin}
+\usepackage{graphicx}
+\graphicspath{{pictures/}} 
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{color,colortbl}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{hhline}
+
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{1,1,1}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+
+\usepackage{url}
+\urldef\myurl\url{foo%.com}
+\def\UrlBreaks{\do\/\do-}
+\usepackage{breakurl}
+\Urlmuskip=0mu plus 1mu
+
+
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}% -- настройка картинок
+
+\usepackage{epigraph} %%% to make inspirational quotes.
+\usepackage[all]{xy} %for XyPic'a
+\usepackage{color} 
+\usepackage{amscd} %для коммутативных диграмм
+%\usepackage[colorlinks,urlcolor=red]{hyperref}
+
+%\renewcommand{\baselinestretch}{1.5}
+%\sloppy
+%\usepackage{listings}
+%\lstset{numbers=left}
+%\setmarginsrb{2cm}{1.5cm}{1cm}{1.5cm}{0pt}{0mm}{0pt}{13mm}
+
+
+\newtheorem{Lemma}{Лемма}[section]
+\newtheorem{Proposition}{Предложение}[section]
+\newtheorem{Theorem}{Теорема}[section]
+\newtheorem{Corollary}{Следствие}[section]
+\newtheorem{Remark}{Замечание}[section]
+\newtheorem{Definition}{Определение}[section]
+\newtheorem{Designations}{Обозначение}[section]
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% 
+%Подготовка оглавления% 
+%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage[titles]{tocloft}
+\renewcommand{\cftdotsep}{2} %частота точек
+\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \LARGE\bfseries} 
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsubsecaftersnum}{.}
+\renewcommand{\cftbeforetoctitleskip}{-1em} 
+\renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\hfill{\footnotesize Стр.}\vspace{-0.5em}} 
+%\renewcommand{\cftchapfont}{\normalsize\bfseries \MakeUppercase{\chaptername} } 
+%\renewcommand{\cftsecfont}{\hspace{1pt}} 
+\renewcommand{\cftsubsecfont}{\hspace{1pt}} 
+%\renewcommand{\cftbeforechapskip}{1em} 
+\renewcommand{\cftparskip}{3mm} %определяет величину отступа в оглавлении
+\setcounter{tocdepth}{5} 
+\renewcommand{\listoffigures}{\begingroup %добавляем номер в список иллюстраций
+\tocsection
+\tocfile{\listfigurename}{lof}
+\endgroup}
+\renewcommand{\listoftables}{\begingroup %добавляем номер в список иллюстраций
+\tocsection
+\tocfile{\listtablename}{lot}
+\endgroup}
+
+
+%\renewcommand{\thelikesection}{(\roman{likesection})}
+%%%%%%%%%%%
+% Margins %
+%%%%%%%%%%%
+\addtolength{\textwidth}{0.7in}
+\textheight=630pt
+\addtolength{\evensidemargin}{-0.4in}
+\addtolength{\oddsidemargin}{-0.4in}
+\addtolength{\topmargin}{-0.4in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%Переопределение chapter%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\empline}{\mbox{}\newline} 
+\newcommand{\likechapterheading}[1]{ 
+\begin{center} 
+\textbf{\MakeUppercase{#1}} 
+\end{center} 
+\empline} 
+
+%%%%%%%Запиливание переопределённого chapter в оглавление%%%%%% 
+\makeatletter 
+\renewcommand{\@dotsep}{2} 
+\newcommand{\l@likechapter}[2]{{\bfseries\@dottedtocline{0}{0pt}{0pt}{#1}{#2}}} 
+\makeatother 
+\newcommand{\likechapter}[1]{ 
+\likechapterheading{#1} 
+\addcontentsline{toc}{likechapter}{\MakeUppercase{#1}}} 
+
+
+
+
+\usepackage{xcolor}
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{000000} % цвет ссылок
+\definecolor{urlcolor}{HTML}{AA1622} % цвет гиперссылок
+ 
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%%%%%%%%%%%
+% Document %
+%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%главы -- section*%%%%%%
+%%%%section -- subsection%%%%
+%subsection -- subsubsection%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def \newstr {\medskip \par \noindent} 
+\begin{document}
+
+
+
+\section*{Задача 1}
+\label{sec:orgb62fe60}
+\subsection*{Постановка}
+\label{sec:org37954e9}
+Студенты готовят посвят для первокурсников. У них имеется $k$ видов алкогольной продукции, каждый вид характеризуется концентрацией спирта $a_i/1000$. На праздник студенты решили приготовить коктель "Бомба" концентрацией алкоголя ровно $n/1000$. Они хотят, чтобы в "Бомбе" было целое число литров алкоголя каждого вида (алкогольной продукции некоторых видов может и вовсе не быть в коктеле). Кроме того, они хотят минимизировать общий объем алкоголя в "Бомбе". 
+
+Концентрацией спирта в алкоголе называется отношение объема спирта к общему объему напитка. При смешивании объем спирта в напитке равен суммарному объему спирта в смешиваемых компонентах; объем напитка также равен сумме объемов напитка в смешиваемых компонентах.
+
+Найдите минимальное натуральное количество литров алкоголя, необходимое для получения "Бомбы" с концентрацией спирта ровно $n/1000$.
+\subsection*{Входные данные}
+\label{sec:orgc51833b}
+В первой строке входных данных содержится число $n$, $0\leq n \leq 1000$.
+
+В следующей строке содержится $k$ чисел $a_1..a_k$, $0\leq a_i \leq 1000$
+\subsection*{Выходные данные}
+\label{sec:org91cd1c2}
+Выведите минимальное натуральное количество литров алкоголя, необходимое для получения "Бомбы" с концентрацией спирта ровно $n/1000$, или -1, если это сделать невозможно.
+
+\subsection*{Пример 1}
+\label{sec:org1b720b0}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+400
+
+300 100 550 600
+&
+3
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection*{Пример 2}
+\label{sec:org2aeecb4}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+50
+
+125  25
+&
+4 
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\pagebreak
+\section*{Задача 2}
+\label{sec:orgef181bd}
+\subsection*{Постановка}
+\label{sec:orgad8a20e}
+Диме дана последовательность чисел $a_1..a_n$. Учитель сказал зачеркнуть число $a_i$ и найти подпоследовательность с максимальной суммой, не содержащую ни одного зачёркнутого числа. Сумму чисел в пустой подпоследовательности считать равной 0. После повторять действия пока не будут зачеркнуты все числа. Помогите Диме выполнить задание учителя.
+
+\subsection*{Входные данные}
+\label{sec:orgc51833b}
+В первой строке записаны $n$ чисел $a_1..a_n$.
+
+$0\leq n \leq 100000$, $0\leq a_i \leq 10^9$
+
+Во второй строчке записано последовательность в которой зачеркиваются числа.
+\subsection*{Выходные данные}
+\label{sec:orgf9da829}
+Выведите $n$ чисел каждое из которых - максимальная сумма на подпоследовательности, после выполнения очередного действия. 
+
+\subsection*{Пример 1}
+\label{sec:orgd7d348d}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+1 3 2 5
+
+3 4 1 2
+&
+5
+4
+3
+0
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+\subsection*{Пример 2}
+\label{sec:orgd7d348d}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+1 2 3 4 5
+
+4 2 3 5 1
+&
+6
+5
+5
+1
+0
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+\pagebreak
+\section*{Задача 3}
+\label{sec:org570b899}
+\subsection*{Постановка}
+\label{sec:orga2b5149}
+На доске нарисованы точки. Стоимость соединения двух точек равняется Манхэттенскому расстоянию между ними.
+Найдите минимальную стоимость соединения всех точек.  
+\subsection*{Входные данные}
+\label{sec:orgeb4908d}
+$n$ строк содержащих два числа $x$ и $y$ - координаты точки.
+
+$0\leq n \leq 1000$,$-10^6 \leq x \leq 10^6$,$-10^6 \leq y \leq 10^6$.
+\subsection*{Выходные данные}
+\label{sec:orged795e8}
+Выведите минимальную стоимость соединения всех точек
+\subsection*{Пример 1}
+\label{sec:org6a26c04}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+0 0
+
+2 2
+
+3 10
+
+5 2
+
+7 0
+&
+20 
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection*{Пример 2}
+\label{sec:orge96f7c4}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+3 12 
+
+-2 5 
+
+-4 1
+&
+18
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+\subsection*{Пример 3}
+\label{sec:orge96f7c4}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+0 0
+&
+0
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+\pagebreak
+\section*{Задача 4}
+\label{sec:org570b899}
+\subsection*{Постановка}
+\label{sec:orga2b5149}
+Дана последовательность точек на плоскости. Значения отсортированы по координате $x$. Так же дано целое число $k$.
+Найдите максимальное значение выражения $y_i + y_j + |x_i-x_j|$, при условии что  $|x_i-x_j|\leq k$. Гарантируется, что существует хотя бы одна пара точек, удовлетворяющая ограничению. 
+\subsection*{Входные данные}
+\label{sec:orgeb4908d}
+$n$ строк содержащих два числа $x$ и $y$ - координаты точки.
+
+$2\leq n \leq 10^5$,$-10^8 \leq x \leq 10^8$,$-10^8 \leq y \leq 10^8$, $0\leq k \leq 10^8$
+\subsection*{Выходные данные}
+\label{sec:orged795e8}
+Выведите максимальное значение выражения.
+\subsection*{Пример 1}
+\label{sec:org6a26c04}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+1 3
+
+2 0
+
+5 10
+
+6 -10
+&
+1 
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection*{Пример 2}
+\label{sec:orge96f7c4}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+0 0 
+
+0 3 
+
+9 2
+&
+3
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\pagebreak
+
+\section*{Задача 5}
+\label{sec:orgb62fe60}
+\subsection*{Постановка}
+\label{sec:org37954e9}
+В стране Турляндии $n$ городов и $m$ двунаправленных дорог. Все междугородние дороги платные. Также в Турляндии есть интересная особенность, нельзя останавливаться в первом по пути городе. Это означает, что нужно проехать из города $x$ в город $y$ и не останавливаясь в нем поехать в город $z$. Цена такой поездки будет равняться $(w_{xy}+w_{yz})^2$, где $w_{xy}$ - цена проезда между городами $x$ и $y$, $w_{yz}$ - цена проезда между городами $y$ и $z$. Для каждого города найдите, можно ли добраться до него из города 1, и какое наименьшее количество денег необходимо потратить на такой путь.
+\subsection*{Входные данные}
+\label{sec:orgc51833b}
+В первой строке находятся два целых числа $n$ - количество городов, $m$ - количество дорог.
+
+В следующих $m$ строках находятся по три целых числа $x$ и $y$ - номера городов , $w_{xy}$ - цена проезда между городами. Гарантируется что если есть строка $x$ $y$ $w_{xy}$ то не будет строки $y$ $x$ $w_{yx}$.
+
+$2\leq n \leq 10^5$
+
+$1 \leq m \leq min((n^2-n)/2;2*10^5)$
+
+$-10^8 \leq y \leq 10^8$
+
+$0\leq k \leq 10^8$
+
+ $1 \leq w_{xy} \leq 50$
+\subsection*{Выходные данные}
+\label{sec:org91cd1c2}
+Для каждого города выведите одно целое число. Если нет корректного пути из 1 города выведите -1. Иначе выведите минимальное необходимое количество денег, чтобы добраться из 1 города.
+
+\subsection*{Пример 1}
+\label{sec:org1b720b0}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+5 6
+
+1 2 3
+
+2 3 4
+
+3 4 5
+
+4 5 6
+
+1 5 1
+
+2 4 2
+&
+0 98 49 25 114 
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection*{Пример 2}
+\label{sec:org2aeecb4}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+3 2
+
+1 2 1
+
+2 3 2
+&
+0 -1 9 
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\pagebreak
+
+\end{document}
